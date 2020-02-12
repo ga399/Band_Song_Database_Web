@@ -1,0 +1,54 @@
+﻿@page
+@model Band_Song_Database_Web.Pages.Songs.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Songs</h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">+ Add Song</a>
+</p>
+<table class="table table-striped table-primary">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Song[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Song[0].Album)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Song[0].MusicBand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Song[0].Producer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Song) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Album.AlbumName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MusicBand.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producer.Name)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-primary" asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-primary" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
